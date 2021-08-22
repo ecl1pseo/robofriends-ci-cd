@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "npm run lint",
+    "precommit": "(npm outdated || true) && npm run lint && pretty-quick --staged",
     "prepare": "husky install"
   },
   "browserslist": {
