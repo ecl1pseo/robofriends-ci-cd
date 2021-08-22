@@ -28,7 +28,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "(npm outdated || true) && npm run lint && pretty-quick --staged",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color --max-warnings=0",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color --max-warnings=0 --fix",
     "prepare": "husky install"
   },
   "browserslist": {
