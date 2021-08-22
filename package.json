@@ -50,10 +50,14 @@
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "*.{js, jsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
+    "**/*.js": [
+      "eslint --fix",
       "git add"
     ]
   }
