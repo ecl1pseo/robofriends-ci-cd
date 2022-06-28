@@ -3,26 +3,22 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:14.10.1
+      - image: circleci/node:16.13.0
     steps:
       - checkout
-      - run: echo "npm installing"
-      - run: npm install
-      - run: CI=true npm run build
-  test:
-    docker:
-      - image: circleci/node:14.10.1
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run lint
-      - run: npm run test --coverage
-  scan:
-    docker:
-      - image: circleci/node:14.10.1
-    steps:
-      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Eslint
+          command: npm run lint
+      - run:
+          name: Running tests
+          command: npm run test
       - sonarcloud/scan
+      - run:
+          name: Build the app
+          command: CI=true npm run build
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.1.1
@@ -31,11 +27,5 @@ workflows:
   version: 2
   ci:
     jobs:
-      - test
-      - scan:
-          context: SonarCloud
-          requires:
-            - test
       - build:
-          requires:
-            - scan
+          context: SonarCloud
