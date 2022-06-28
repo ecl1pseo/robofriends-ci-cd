@@ -17,12 +17,25 @@ jobs:
       - run: npm install
       - run: npm run lint
       - run: npm run test --coverage
+  scan:
+    docker:
+      - image: circleci/node:14.10.1
+    steps:
+      - checkout
+      - sonarcloud/scan
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.1.1
 
 workflows:
-  version: 2.1
+  version: 2
   ci:
     jobs:
-      - build
-      - test:
+      - test
+      - scan:
+          context: SonarCloud
           requires:
-            - build
+            - test
+      - build:
+          requires:
+            - scan
