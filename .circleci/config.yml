@@ -15,9 +15,7 @@ jobs:
       - run:
           name: Running tests
           command: npm run test
-      - run:
-          name: Scan code with Sonar
-          command: sonarcloud/scan
+      - sonarcloud/scan
       - run:
           name: Build the app
           command: CI=true npm run build
