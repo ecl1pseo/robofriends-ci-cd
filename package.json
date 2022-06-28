@@ -25,7 +25,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --coverage --watchAll",
     "eject": "react-scripts eject",
     "precommit": "(npm outdated || true) && npm run lint && pretty-quick --staged",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color --max-warnings=0 --fix",
