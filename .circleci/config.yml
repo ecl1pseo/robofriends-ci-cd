@@ -10,7 +10,7 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
-          name: Lint the code
+          name: Eslint
           command: npm run lint
       - run:
           name: Running tests
